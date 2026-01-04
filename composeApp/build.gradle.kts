@@ -65,5 +65,7 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 }
 

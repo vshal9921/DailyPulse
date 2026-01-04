@@ -12,23 +12,6 @@ class ArticlesViewModel : BaseViewModel() {
 
     val articlesState : StateFlow<ArticlesState> get() = _articlesState
 
-    init {
-        getArticles()
-    }
-
-    private fun getArticles(){
-        scope.launch {
-
-            val fetched = fetchArticles()
-
-            delay(500)
-
-            _articlesState.emit(ArticlesState(articles = fetched))
-        }
-    }
-
-    suspend fun fetchArticles() : List<Article> = sampleArticles
-
     private val sampleArticles = listOf<Article>(
         Article(
             title = "Three challenges in 2026: Bond yield, currency, and deposit mobilisation",
@@ -56,4 +39,21 @@ class ArticlesViewModel : BaseViewModel() {
             imageUrl = "https://bsmedia.business-standard.com/_media/bs/img/article/2025-02/17/full/1739814359-805.jpg?im=FeatureCrop,size=(826,465)"
         )
     )
+
+    init {
+        getArticles()
+    }
+
+    private fun getArticles(){
+        scope.launch {
+
+            val fetched = fetchArticles()
+
+            delay(1500)
+
+            _articlesState.emit(ArticlesState(articles = fetched))
+        }
+    }
+
+    suspend fun fetchArticles() = sampleArticles
 }
