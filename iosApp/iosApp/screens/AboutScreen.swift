@@ -9,6 +9,9 @@ import Shared
 import SwiftUI
 
 struct AboutScreen: View{
+    
+    @Environment(\.dismiss)
+    private var dismiss
    
     private struct RowItem: Hashable{
         let title: String
@@ -35,20 +38,31 @@ struct AboutScreen: View{
     }()
     
     var body: some View{
-        List{
-            ForEach(items, id: \.self){ item in
-                VStack(alignment: .leading){
-                    Text(item.title)
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                    Text(item.subtitle)
-                        .font(.body)
-                        .foregroundStyle(.primary)
+        NavigationStack{
+            List{
+                ForEach(items, id: \.self){ item in
+                    VStack(alignment: .leading){
+                        Text(item.title)
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                        Text(item.subtitle)
+                            .font(.body)
+                            .foregroundStyle(.primary)
+                    }
+                    .padding(.vertical, 4)
+                    
                 }
-                .padding(.vertical, 4)
-                
+            }.toolbar{
+                ToolbarItem(placement: .primaryAction){
+                    Button{
+                        dismiss()
+                    } label: {
+                        Text("Done").bold()
+                    }
+                }
             }
         }
+        
     }
 }
 

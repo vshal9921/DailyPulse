@@ -5,7 +5,8 @@ struct iOSApp: App {
     var body: some Scene {
         WindowGroup {
             //AboutScreen()
-            ArticlesScreen(viewModel : .init())
+            //ArticlesScreen(viewModel : .init())
+            ContentView()
         }
     }
 }
